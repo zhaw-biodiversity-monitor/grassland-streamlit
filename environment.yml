@@ -1,9 +1,0 @@
-name: grassland-streamlit
-channels:
-  - defaults
-dependencies:
-  - streamlit
-  - conda-forge::streamlit-folium
-  - plotly
-  - pandas
-prefix: /home/nils/miniconda3/envs/grassland-streamlit
