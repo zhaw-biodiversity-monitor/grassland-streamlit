@@ -1,12 +1,7 @@
-name: biodiversity-streamlit
+name: grassland-streamlit
 channels:
-  - defaults
+  - conda-forge
 dependencies:
-  - pip
-  - openpyxl
-  - plotly
-  - ipykernel
-  - jupyter_bokeh
-  - streamlit-folium
   - streamlit
-  - pandas
+  - streamlit-folium
+  - plotly

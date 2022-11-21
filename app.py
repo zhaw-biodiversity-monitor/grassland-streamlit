@@ -1,8 +1,4 @@
-# trying out steamlit folium, since this already seems to have bi-directionality implemented.
-# using folium with a geojson significantly imporved perfomance
-# it seems very promising, however it turns out that styling of streamlit is extremely difficult.
-# if i want to switch to dash, here's a nice forum answer on this:
-# https://community.plotly.com/t/dash-and-folium-integration/5772
+
 
 import streamlit as st
 import pandas as pd
@@ -26,13 +22,11 @@ def load_data(nrows):
     Load the excel data into memory. Todo: update the excelfile to contain only necessary data (save ram) 
     and also turn into csv (or maybe just load the json?)
     """
-    #with st.spinner(f"Loading max. {nrows} rows of data"):
-    data = pd.read_excel("Grassland_ALLEMA-BDM-WBS_v.5.xlsx", "Data file", nrows=nrows)
+    data = pd.read_csv("grassland-data/Grassland_ALLEMA-BDM-WBS_v.5.csv", nrows=nrows)
     lowercase = lambda x: str(x).lower()
     data.rename(lowercase, axis="columns", inplace=True)
     data.rename(columns={"länge": "lon", "breite": "lat"}, inplace=True)
-    data["sömmerung"] = data["sömmerung"].apply(lambda x: x == 1)   
-    st.success('Done!', icon="✅")
+    #data["sömmerung"] = data["sömmerung"].apply(lambda x: x == 1)   
     return data
 
 def get_bb_drawings(drawings):
@@ -75,7 +69,7 @@ folium.plugins.Draw(draw_options={"polyline": False, "marker": False, "circlemar
 "rectangle": {"repeatMode": False}}).add_to(m)
 
 mark = folium.CircleMarker(radius = 3,weight = 0, fill_color = '#000000', fill_opacity = 1)
-folium.GeoJson("geojson.json", marker = mark).add_to(m)
+folium.GeoJson("grassland-data/geojson.json", marker = mark).add_to(m)
 
 #folium.Polygon([[[46.976505, 7.580566,],[47.260592,7.580566],[47.260592, 8.4375],[46.976505,8.4375],[46.976505,7.580566]]]).add_to(m)
 st.title("Biodiversitätsmonitor")
