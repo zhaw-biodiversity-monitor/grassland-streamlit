@@ -1,0 +1,12 @@
+name: biodiversity-streamlit
+channels:
+  - defaults
+dependencies:
+  - pip
+  - openpyxl
+  - plotly
+  - ipykernel
+  - jupyter_bokeh
+  - streamlit-folium
+  - streamlit
+  - pandas
